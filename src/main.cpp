@@ -71,7 +71,7 @@ Service parseService(const fs::path& path) {
     s.group = node["group"] ? node["group"].as<std::string>() : "root";
     s.enabled = node["enabled"] ? node["enabled"].as<bool>() : true;
     if (node["needs"])
-        for (auto& n : node["needs"])
+        for (const auto& n : node["needs"])
             s.needs.push_back(n.as<std::string>());
     return s;
 }
