@@ -34,9 +34,9 @@ jobs:
           VERSION=${TAG_VERSION#v}
           mkdir -p package/bin
           cp build/bin/moodberryd package/bin/
-          tar -czf moodberry-${VERSION}.choco.pkg -C package .
+          tar -czf moodberryd-${VERSION}.choco.pkg -C package .
 
       - name: 🚀 Upload .choco.pkg to release
         uses: softprops/action-gh-release@v2
         with:
-          files: moodberry-*.choco.pkg
+          files: moodberryd-*.choco.pkg
