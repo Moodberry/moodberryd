@@ -1,0 +1,38 @@
+name: Build and Package moodberryd
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔄 Checkout source
+        uses: actions/checkout@v4
+
+      - name: 🛠️ Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y cmake g++ libyaml-cpp-dev tar
+
+      - name: 🏗️ Configure and build with CMake
+        run: |
+          mkdir build
+          cd build
+          cmake ..
+          make
+
+      - name: 📦 Package as .choco.pkg
+        run: |
+          TAG_VERSION=${GITHUB_REF##*/}
+          VERSION=${TAG_VERSION#v}
+          mkdir -p package/bin
+          cp build/bin/moodberryd package/bin/
+          tar -czf moodberry-${VERSION}.choco.pkg -C package .
+
+      - name: 🚀 Upload .choco.pkg to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: moodberry-*.choco.pkg
