@@ -1,0 +1,14 @@
+name: "Moodberry Init Daemon"
+version: 1.0.0
+maintainer: "Klydra Project"
+description: "Moodberry is the init system and service manager for Klydra. It replaces systemd as PID 1."
+
+source:
+  raw: "https://raw.githubusercontent.com/Moodberry/moodberryd/main"
+  package: "https://github.com/Moodberry/moodberryd/releases/download/v1.0.0/moodberryd-1.0.0.choco.pkg"
+
+install:
+  commands: |
+    sudo mkdir -p /sbin
+    sudo ln -sf /opt/bitpup/Chocolaterie/moodberryd/bin/moodberryd /sbin/moodberryd
+    sudo ln -sf /sbin/moodberryd /sbin/init
