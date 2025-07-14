@@ -10,5 +10,5 @@ source:
 install:
   commands: |
     sudo mkdir -p $ROOT/sbin
-    sudo ln -sf $ROOT/opt/bitpuppy/Chocolaterie/moodberryd/bin/moodberryd /sbin/moodberryd
-    sudo ln -sf $ROOT/sbin/moodberryd /sbin/init
+    sudo ln -sf $ROOT/opt/bitpuppy/Chocolaterie/moodberryd/bin/moodberryd $ROOT/sbin/moodberryd
+    sudo ln -sf $ROOT/sbin/moodberryd $ROOT/sbin/init
